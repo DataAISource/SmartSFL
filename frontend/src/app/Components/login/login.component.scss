@@ -1,0 +1,90 @@
+.main-container{
+    
+  position: relative; /* Set position to relative */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+img{
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  vertical-align: baseline;
+  background-repeat: no-repeat;
+  height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  width:100%;
+ 
+   
+}
+.login-container {
+  color:rgb(10, 10, 10);
+  width: 350px;
+  background-color: #d8d8da;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(2, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Align items vertically */
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 950px;
+  padding: 1% 0;
+}
+ 
+.login-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+ 
+.form-group {
+  margin-bottom: 20px;
+  margin-right: 15px;
+}
+ 
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+ 
+.form-group button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  
+  color: #fff;
+  cursor: pointer;
+ 
+}
+ 
+.form-group button:hover {
+  background-color: #0056b3;
+}
+.loginbut {
+  
+  background-color: #28104E; /* Change the background color to white */
+  color: white; /* Change the text color */
+  border: none;
+  width: 130px;
+padding: 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+margin-bottom: 10px;
+}

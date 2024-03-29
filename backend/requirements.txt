@@ -1,0 +1,5 @@
+flask==2.3.2
+python-dotenv==1.0.0
+azure-search-documents
+openai==0.28.1
+flask_cors

@@ -1,0 +1,106 @@
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+<div class="main">
+    <div class="header">
+        <div class="logo">
+            <img src="..\assets\tvsnext_logo png.png" alt="Logo">
+            <div class="title">Smart contracts</div>
+        </div>
+        <button class="account"><span class="material-symbols-outlined">account_circle</span></button>
+
+
+    </div>
+    <div class="body">
+        <div class="uploaded">
+            <div class="add-icon">
+                <h3>Departments</h3>
+                <button (click)="openFolderDialog()">
+                    <span class="material-symbols-outlined">add</span>
+                </button>
+
+            </div>
+            <div class="folder-dialog" *ngIf="showFolderDialog">
+                <h2>Create New Folder</h2>
+                <input type="text" [(ngModel)]="newFolderName" placeholder="Enter folder name">
+               
+                <button (click)="createFolder()">Create</button>
+                <button (click)="closeFolderDialog()">Cancel</button>
+            </div>
+        
+            <div class="folders-container">
+                <div *ngFor="let folder of folders" class="folder">
+                  
+                    <div class="folder-name" (click)="toggleFolder(folder)">
+                        {{ folder.name }}
+                        <div class="upload-icon">
+                            <input type="file" (change)="handlePdfInput($event, folder)" style="display: none" multiple>
+                            <button (click)="openPdfFileManagerForFolder(folder)">
+                              <span class="material-symbols-outlined">note_add</span>
+                            </button>
+                          </div>
+                        <span class="material-symbols-outlined " [ngClass]="{'folder-open': folder.isOpen, 'folder-closed': !folder.isOpen}">
+                          {{ folder.isOpen ? 'keyboard_arrow_down' : 'keyboard_arrow_right' }}
+                         
+                        </span>
+                        
+                      </div>
+                      <div class="folder-content" *ngIf="folder.isOpen">
+                        
+                        <div class="uploaded-pdfs" *ngFor="let pdf of folder.pdfList">
+                          <button (click)="showPdfContent(pdf)">
+                            <p>{{ pdf.name }}</p>
+                          </button>
+                        </div>
+                      </div>
+
+                </div>
+            </div>
+            <div class="uploaded-pdfs" *ngFor="let pdf of pdfList">
+                <button (click)="showPdfContent(pdf)">
+                    <p>{{ pdf.name }}</p>
+                </button>
+            </div>
+        </div>
+        <div class="pdf-viewer">
+            <button class="close-pdf" *ngIf="pdfContent" (click)="closePdfViewer()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <iframe *ngIf="pdfContent" [src]="pdfContent" width="100%" height="600px" frameborder="0"></iframe>
+        </div>
+    </div>
+    <div class="chat">
+        <div class="chatbot-container" [ngClass]="{'open': isOpen}">
+            <div class="chatbot-header">
+                <h4>Chat with us!!</h4>
+                <button class="close-btn" (click)="closeChat()">&times;</button>
+            </div>
+            <div class="chatbot-body">
+                <div *ngFor="let message of messages"
+                    [ngClass]="{'user-message': message.from === 'user', 'bot-message': message.from === 'bot'}">
+                    <div class="message-bubble">
+                        <p>{{ message.text }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-footer">
+
+                <input type="text" [ngModel]="isRecording ? service.text : message" placeholder="Type your message..."
+                    (ngModelChange)="message = $event" *ngIf="!isRecording" (keydown.enter)="sendMessageToAPI()">
+                <input type="text" [ngModel]="service.text" placeholder="Speaking..." *ngIf="isRecording" disabled>
+                <button (click)="sendMessageToAPI()"><span class="material-symbols-outlined">
+                        send
+                    </span></button>
+                <button class="microphone-btn" (click)="startSpeechRecognition()"><span
+                        class="material-symbols-outlined">
+                        mic
+                    </span></button>
+            </div>
+        </div>
+        <button class="chatbot-icon" *ngIf="!isOpen" (click)="openChat()"><span class="material-symbols-outlined">
+                robot_2
+            </span></button>
+
+
+    </div>
+</div>
